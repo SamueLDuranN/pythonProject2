@@ -43,17 +43,25 @@ class Tetromino:
     def es_semejante(self, otro): #Esto define una función llamada es_semejante en la clase Tetromino. Al igual que otras funciones dentro de
         # la clase, toma self como argumento, lo que permite que la función acceda y compare los atributos de la instancia de la clase con los
         # del Tetromino proporcionado como otro. Comprueba si dos tetrominós son semejantes en al menos una de sus rotaciones.
-        for rotacion1 in self.rotaciones:
+        for rotacion1 in self.rotaciones: #Este bucle for recorre todas las rotaciones del Tetromino actual (self) almacenadas en la lista self.rotaciones.
             for rotacion2 in otro.rotaciones:
-                if rotacion1 == rotacion2:
-                    return True
-        return False
+                if rotacion1 == rotacion2: #En este punto, se compara una rotación del Tetromino actual con una rotación del Tetromino
+                    # proporcionado. Si alguna de las rotaciones coincide, la función devolverá True, lo que indica que los Tetrominós son
+                    # semejantes en al menos una de sus rotaciones.
+                    return True # Si se encuentra una rotación semejante, la función devuelve True inmediatamente.
+        return False #Si no se encuentra ninguna rotación semejante después de comparar todas las posibles combinaciones de rotaciones,
+        # la función devuelve False, lo que indica que los Tetrominós no son semejantes en ninguna de sus rotaciones.
 
-    def guardar_en_archivo(self, nombre_archivo):
+    def guardar_en_archivo(self, nombre_archivo): #Esto define una función llamada guardar_en_archivo en la clase Tetromino.
+        # La función toma dos argumentos: self, que se refiere a la instancia actual de la clase, y nombre_archivo, que es el nombre del
+        # archivo en el que se guardará el estado del Tetromino.
         # Guarda el estado actual del tetrominó en un archivo con el nombre proporcionado.
-        with open(nombre_archivo, 'w') as archivo:
+        with open(nombre_archivo, 'w') as archivo: #Esta línea de código utiliza la declaración with para abrir un archivo en modo escritura ('w').
+            # El archivo se abre con el nombre especificado en nombre_archivo. La variable archivo representa el objeto de archivo.
             for fila in self.rotaciones[self.rotacion_actual]:
-                archivo.write(''.join(fila) + '\n')
+                archivo.write(''.join(fila) + '\n') #Dentro del bucle, se utiliza el método write() para escribir cada fila en el archivo.
+                # ''.join(fila) se utiliza para unir todos los caracteres en la fila en una sola cadena, y luego se agrega un carácter de nueva
+                # línea ('\n') al final de la fila para separar las filas en el archivo.
 
 
 # Pruebas
